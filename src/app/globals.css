@@ -2,32 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.hero {
+    @apply grid;
+    grid-template-columns: .7fr .4fr;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.content {
+    min-height: calc(93vh - 40px);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+select,
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="text"] {
+    @apply w-full mb-4 rounded-xl;
+    @apply p-2 border-gray bg-light-gray
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+input[type="email"]:disabled,
+input[type="password"]:disabled,
+input[type="tel"]:disabled,
+input[type="text"]:disabled {
+    @apply bg-dark-gray opacity-45 cursor-not-allowed
+}
+
+label {
+    @apply text-gray text-base
+}
+
+button {
+    @apply block;
+    @apply rounded-full px-6 py-2
+}
+
+button[type="submit"], .submit{
+    @apply border-primary bg-primary text-white
+}
+
+button[type="submit"]:disabled, .submit:disabled{
+    @apply cursor-not-allowed opacity-70
+}
+
+div.tabs > * {
+    @apply bg-light-gray text-gray rounded-full text-xl py-2 px-4
+}
+
+div.tabs > *.active {
+    @apply bg-yellow text-black
+}
+
+.input-date::-webkit-calendar-picker-indicator {
+    background: url('/Calendar.png');
+    background-size: contain;
+    cursor: pointer;
+}
+
+.input-time::-webkit-calendar-picker-indicator {
+    background: url('/Clock.png');
+    background-size: contain;
+    cursor: pointer;
+}
+
+.arrow {
+    width: 20px;
+    height: 25px;
+    position: absolute;
+    display: inline-block;
+    top: 17px;
+    right: 15px;
+    background: url("/Arrow.png") right / 100% no-repeat;
+    pointer-events: none;
 }
